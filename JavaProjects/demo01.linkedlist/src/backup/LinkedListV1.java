@@ -1,7 +1,6 @@
-package in.conceptarchitect.collections;
+package backup;
 
-
-public class LinkedList {
+public class LinkedListV1 {
 	
 	class Node {	
 		int value;
@@ -44,26 +43,9 @@ public class LinkedList {
 	
 	public void insert(int pos, int value) {
 		
-		Node n=locate(pos);
-		
-		if(n==null)
-			return ; //there is no node. can't insert
-		
-		Node newNode=new Node();
-		newNode.value=value;
-		newNode.next= n; //remeber we are inserting before n
-		newNode.previous=n.previous; //what ever comes before n
-		
-		if (n==first) //inserting before first
-			first=newNode;
-		else
-			n.previous.next=newNode;
-		
-		n.previous=newNode;
 	}
 	
-	
-	private Node locate(int pos) {
+	public int get(int pos) {
 		int i=0;
 		Node n=first;
 		while(i<pos && n!=null)
@@ -71,21 +53,20 @@ public class LinkedList {
 			i++;
 			n=n.next;
 		}
-		return n;
-	}
-	
-	public int get(int pos) {
-		Node n = locate(pos);
 		if(n==null)
 			return 0;
 		else
 			return n.value;
 	}
-
-	
 	
 	public void set(int pos, int value) {
-		Node n = locate(pos);
+		int i=0;
+		Node n=first;
+		while(i<pos && n!=null)
+		{
+			i++;
+			n=n.next;
+		}
 		if(n!=null)
 			n.value=value;
 	}
@@ -99,7 +80,13 @@ public class LinkedList {
 			return ; //nothing to remove
 		
 		
-		Node n=locate(pos);
+		int i=0;
+		Node n=first;
+		while(i<pos && n!=null)
+		{
+			i++;
+			n=n.next;
+		}
 		
 		if(n==null)
 			return ; //we moved past the last one. Nothing to remove
@@ -129,5 +116,5 @@ public class LinkedList {
 		
 		return c;
 	}
-		
+	
 }
