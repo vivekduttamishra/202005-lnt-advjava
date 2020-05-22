@@ -1,6 +1,7 @@
 package demo01.linkedlist;
 
-import in.conceptarchitect.collections.LinkedList;
+import in.conceptarchitect.collections.IntList;
+import in.conceptarchitect.collections.StringList;
 
 public class Program {
 
@@ -9,17 +10,38 @@ public class Program {
 		
 		//Linked List Tests
 		
-		LinkedList list=new LinkedList();
+		IntList list=new IntList();
 		
 		//listBasicTest(list);
 		
-		listPerformanceTest(list,100000);
+		//listPerformanceTest(list,100000);
+		
+		testStringList();
+		
+		
+		
+	}
+	
+	static void testStringList() {
+		StringList list=new StringList();
+		list.add("india");
+		list.add("france");
+		list.add("japan");
+		
+		for(int i=0;i<list.size();i++) {
+			var str=list.get(i);
+			System.out.println(str);
+			list.set(i, str.toUpperCase());
+		}
+		
+		for(int i=0;i<list.size();i++)
+			System.out.println(list.get(i));
 		
 		
 		
 	}
 
-	private static void listPerformanceTest(LinkedList list, int items) {
+	private static void listPerformanceTest(IntList list, int items) {
 		// TODO Auto-generated method stub
 		System.out.println("Inserting "+items+" items");
 		long start=System.currentTimeMillis();
@@ -42,7 +64,7 @@ public class Program {
 		
 	}
 
-	private static void listBasicTest(LinkedList list) {
+	private static void listBasicTest(IntList list) {
 		for(int i=0;i<10;i++)		
 			list.add(i);
 		System.out.println("size of list after add is "+list.size());
@@ -74,7 +96,7 @@ public class Program {
 		showList(list);
 	}
 
-	private static void showList(LinkedList list) {
+	private static void showList(IntList list) {
 		for(int i=0;i<list.size();i++)
 			System.out.print(list.get(i)+"\t");
 		

@@ -1,7 +1,7 @@
 package in.conceptarchitect.collections;
 
 
-public class LinkedList {
+public class IntList {
 	
 	class Node {	
 		int value;
@@ -11,34 +11,28 @@ public class LinkedList {
 
 
 	Node first;
+	int count;
+	Node last; //always remember the last position.
 	
 	//add a new value at the end of the list
 	public void add(int value) {
+		
+		
 		Node newNode=new Node();
 		newNode.value=value;
 		newNode.next= null; //remember this will be the last node.
-		//node.previous=??? //--> we must do it at some point
+		newNode.previous=last; //current last node is my previous
 		
-		//Now I need to add this node after the last node in the list
-		
+		count++;
+
 		//scenario#1 ---> List is empty. we are adding the first node
-		if(first==null) {
+		if(first==null) 
 			first=newNode; //this node is the first node
-			newNode.previous=null; //this is the first node
+		else
+			last.next=newNode; //next to current last will be newNode
+		
+		last=newNode; //new node is the last Node
 			
-			return ; //work done!
-		}
-		
-		//secnerio #2 ---> List is not empty. We must find the last Node
-		Node node=first; //let us begin from the begin
-		while(node.next!=null)  //loop till there is no next available
-			node=node.next ; //keep moving next item
-		
-		//now node means last node
-		Node last=node;
-		last.next=newNode; //next to the last will be newNode
-		newNode.previous=last; //previous to new node will be current lastNode
-		
 		
 	}
 	
@@ -60,6 +54,7 @@ public class LinkedList {
 			n.previous.next=newNode;
 		
 		n.previous=newNode;
+		count++;
 	}
 	
 	
@@ -120,14 +115,7 @@ public class LinkedList {
 	}
 	
 	public int size() {
-		int c=0;
-		Node n=first;
-		while(n!=null){
-			n=n.next;
-			c++;
-		}
-		
-		return c;
+		return count;
 	}
 		
 }
