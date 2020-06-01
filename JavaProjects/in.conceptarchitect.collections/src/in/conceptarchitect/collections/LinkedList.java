@@ -57,9 +57,13 @@ public class LinkedList<X> {
 	}
 	
 	private Node locate(int pos) {
+		
+		if(pos<0 || pos>=size())
+			throw new IndexOutOfBoundsException(pos);
+		
 		int i=0;
 		Node n=first;
-		while(i<pos && n!=null)
+		while(i<pos)
 		{
 			i++;
 			n=n.next;
@@ -123,6 +127,29 @@ public class LinkedList<X> {
 		
 		return list;
 		
+	}
+	
+	/*
+	 * Should Create a String representing all value from the list
+	 * Example1: List contains "india","usa","france"
+	 * 		Output:  LinkedList(\tIndia,\tusa\tfrance\t)
+	 * Example2: List is empty
+	 * 		Output:  LinkedList()	  
+	 */
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		if(size()==0)
+			return "LinkedList()";
+		
+		String str="LinkedList(\t";
+		
+		for(Node n=first;n!=null;n=n.next)
+			str+=n.value+"\t";
+		
+		str+=")";
+		
+		return str;
 	}
 		
 }
