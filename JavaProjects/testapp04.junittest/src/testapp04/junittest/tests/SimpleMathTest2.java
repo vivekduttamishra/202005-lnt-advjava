@@ -75,7 +75,12 @@ public class SimpleMathTest2 {
 			//do nothing and test will pass.
 		}
 
-
+	}
+	
+	
+	@Test(expected = ArithmeticException.class)  //indicate which exception you exception	
+	public void divideThrowsArithmeticExceptionIfDenominatorIsZero() {
+		SimpleMath.divide(7, 0);
 	}
 
 
