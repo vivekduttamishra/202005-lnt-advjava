@@ -1,5 +1,6 @@
 package testapp03.linkedlisttests;
 
+import in.conceptarchitect.collections.IndexedList;
 import in.conceptarchitect.collections.LinkedList;
 
 public class TestApp {
@@ -22,12 +23,12 @@ public class TestApp {
 		testGetWithInvalidIndex(numbers);
 	}
 	
-	private static void testGetWithInvalidIndex(LinkedList<Integer> numbers) {
+	private static void testGetWithInvalidIndex(IndexedList<Integer> numbers) {
 		// TODO Auto-generated method stub
 		System.out.println("numbers.get(100) is "+numbers.get(100));
 	}
 
-	private static void testGet(LinkedList<Integer> numbers) {
+	private static void testGet(IndexedList<Integer> numbers) {
 		// TODO Auto-generated method stub
 		int [] positions= {6, 4, 9, 0};
 		for(int position : positions) {
@@ -51,7 +52,7 @@ public class TestApp {
 		System.out.println(numbers);
 	}
 
-	private static void testSet(LinkedList<Integer> numbers) {
+	private static void testSet(IndexedList<Integer> numbers) {
 		// TODO Auto-generated method stub
 		int [] positions= {6, 4, 9, 0};
 		for(int position : positions) {
@@ -63,7 +64,7 @@ public class TestApp {
 
 	
 
-	private static void testAdd(LinkedList<Integer> numbers) {
+	private static void testAdd(IndexedList<Integer> numbers) {
 		
 		for(int i=0;i<10;i++) {
 			numbers.add(i); 

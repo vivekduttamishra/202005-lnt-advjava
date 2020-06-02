@@ -1,5 +1,6 @@
 package testapp02.listtests;
 
+import in.conceptarchitect.collections.IndexedList;
 import in.conceptarchitect.collections.LinkedList;
 import in.conceptarchitect.collections.ObjectList;
 import in.conceptarchitect.collections.StringList;
@@ -9,7 +10,7 @@ public class Program {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		LinkedList<String> values= LinkedList.create("India","USA","France","Japan");
+		IndexedList<String> values= LinkedList.create("India","USA","France","Japan");
 		
 		
 		
@@ -18,7 +19,7 @@ public class Program {
 		//Using ObjectList to Strings
 		//testObjectList();
 		
-		LinkedList<String> names=new LinkedList<String>();
+		IndexedList<String> names=new LinkedList<String>();
 		names.add("India");
 		names.add("USA");
 		//names.add(21); //PROBLEM SOLVED #2: Invalid Data is rejected
@@ -42,7 +43,7 @@ public class Program {
 		//But it is not a recommended practice
 		//It was don't for backward compatiblity 
 		
-		LinkedList numbers=new LinkedList();
+		IndexedList numbers=new LinkedList();
 		numbers.add(20);
 		numbers.add(30);
 		numbers.add(15);
@@ -59,7 +60,7 @@ public class Program {
 		
 		
 		//java assumes Left side type on the right side (Java 6)
-		LinkedList<Object> objects=new LinkedList<>();
+		IndexedList<Object> objects=new LinkedList<>();
 		
 		objects.add(10);
 		objects.add("hello");

@@ -1,9 +1,10 @@
 package in.conceptarchitect.collections;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 //X is some unknown which will be supplied when creating a object
-public class LinkedList<X> {  	
+public class LinkedList<X> implements Iterable<X>, IndexedList<X> {  	
 	class Node {	
 		X value;
 		Node next;
@@ -16,6 +17,7 @@ public class LinkedList<X> {
 	int currentPosition;
 	
 	//add a new value at the end of the list
+	@Override
 	public void add(X value) {
 		
 		
@@ -90,12 +92,14 @@ public class LinkedList<X> {
 		return n;
 	}
 	
+	@Override
 	public X get(int pos) {
 		Node n = locate(pos);	
 		
 		return n.value;
 	}
 	
+	@Override
 	public void set(int pos, X value) {
 		Node n = locate(pos);
 		
@@ -127,13 +131,14 @@ public class LinkedList<X> {
 		
 	}
 	
+	@Override
 	public int size() {
 		return count;
 	}
 	
 	
-	public  static <T> LinkedList<T> create(T...values){
-		LinkedList<T> list=new LinkedList<T>();
+	public  static <T> IndexedList<T> create(T...values){
+		IndexedList<T> list=new LinkedList<T>();
 		for(T value : values) {
 			list.add(value);
 		}
@@ -165,24 +170,33 @@ public class LinkedList<X> {
 		return str;
 	}
 	
+	@Override
 	public Iterator<X> iterator(){
 		return new MyListIterator();
 	}
 	
-	
+	 
 	
 	class MyListIterator implements Iterator<X>{
+		
+		Node current=first;
 
 		@Override
 		public boolean hasNext() {
 			// TODO Auto-generated method stub
-			return false;
+			return current!=null;
 		}
 
 		@Override
 		public X next() {
 			// TODO Auto-generated method stub
-			return null;
+			if(current!=null) {
+				X value=current.value;
+				current=current.next;
+				return value; 
+			} else {
+				throw new NoSuchElementException();
+			}
 		}
 		
 	}

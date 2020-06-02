@@ -17,7 +17,7 @@ public class LinkedListPerformanceTest {
 	@Before
 	public void setUp() throws Exception {
 		startTime=System.currentTimeMillis();
-		for(int i=1;i<=max;i++)
+		for(int i=1;i<=max;i++) 
 			list.add(i);
 	}
 	
@@ -34,7 +34,7 @@ public class LinkedListPerformanceTest {
 	}
 	
 	
-	@Test(timeout = 15)
+	 @Test(timeout = 50)
 	public void timeTakenToAccessMaxItems() {
 		System.out.println("time taken to access "+max+" items");
 		long sum=0;
@@ -48,7 +48,7 @@ public class LinkedListPerformanceTest {
 	}
 	
 	
-	@Test(timeout = 15)
+	  @Test(timeout=50)
 	public void timeTakenToAccessMaxItemsUsingIterator() {
 		System.out.println("time taken to access "+max+" items using iterator");
 		long sum=0;
@@ -57,6 +57,22 @@ public class LinkedListPerformanceTest {
 		while(it.hasNext()) {
 			sum+=it.next();
 		}
+		
+		
+		endTime=System.currentTimeMillis();
+		System.out.println("Actual Total Time Taken:"+(endTime-startTime)+" ms");
+		System.out.println("Sum of all values is "+sum);
+		
+	}
+	
+	
+	@Test(timeout=50)
+	public void timeTakenToAccessMaxItemsUsingForEachLoop() {
+		System.out.println("time taken to access "+max+" items using for-each");
+		long sum=0;
+		
+		for(int value : list)
+			sum+=value;
 		
 		
 		endTime=System.currentTimeMillis();
