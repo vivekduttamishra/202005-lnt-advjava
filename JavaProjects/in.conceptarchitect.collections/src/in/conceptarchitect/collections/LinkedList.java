@@ -23,8 +23,10 @@ public class LinkedList<X> {
 		newNode.previous=last; //current last node is my previous
 		
 		count++;
-
+		
 		//scenario#1 ---> List is empty. we are adding the first node
+		
+		
 		if(first==null) 
 			first=newNode; //this node is the first node
 		else
