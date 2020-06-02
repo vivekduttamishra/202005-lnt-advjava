@@ -4,7 +4,10 @@ package in.conceptarchitect.tests;
 //this way all static method of the calss can be invoked without using Class reference
 import static org.junit.Assert.*;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -12,17 +15,33 @@ import in.conceptarchitect.collections.LinkedList;
 
 public class LinkedListTests {
 	
+	static int testCount;
 	//Arrange
 	LinkedList<Integer> list;	
 	int initSize;
+	int testData[]= {1,2,3};
 	
-	@Before
+	@BeforeClass //--> executes only once before all tests. 
+	public static void beforeFirstTest() {
+		testCount=0;
+	}
+	
+	@AfterClass
+	public static void afterLastTest() {
+		System.out.println("Total Tests executed :"+testCount);
+	}
+	
+	@After
+	public void afterEachTest() {
+		testCount++;
+	}
+	
+	@Before  //--> executes before every test method
 	public void arrange() {
-		System.out.println("arrange is called");
+		//System.out.println("arrange is called");
 		list=new LinkedList<Integer>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
+		for(int value :testData)
+			list.add(value);
 		initSize=list.size();
 	}
 
@@ -93,26 +112,30 @@ public class LinkedListTests {
 		assertEquals("LinkedList(\t1\t2\t3\t)", list.toString());
 	}
 	
-	@Ignore 
+	//@Ignore 
 	@Test
 	public void get_0GetsTheFirstItem() {
 				
 		//ACT
 		
 		//ASSERT
+		assertEquals(1, (int) list.get(0)); 
 	}
 	
 	
-	@Ignore 
+	//@Ignore 
 	@Test
 	public void get_PosReturnsItemsFromZeroBasedIndex() {
 		
+		for(int i=0;i<list.size();i++)
+			assertEquals(i+1, (int) list.get(i));
+		
 	}
 	
-	@Ignore 
-	@Test
+	//@Ignore 
+	@Test(expected = IndexOutOfBoundsException.class)
 	public void get_throwsIndexExceptionForInvalidIndex() {
-		
+		list.get(100);
 	}
 	
 	@Ignore 
@@ -123,31 +146,48 @@ public class LinkedListTests {
 		//-3 is third last item
 		//size() is first item
 		
+		int p=0;
+		for(int i=-list.size(); i<=-1; i++) {			
+			assertEquals(testData[p], (int)list.get(i));
+			p++;			
+		}
 		//you will have to modify LinkedList to implement this feature
 	}
 	
 	@Ignore 
 	@Test
 	public void set_setDoesntAddNewItem() {
+	
+		list.set(1, 100);
 		
+		//there should be no change in the list size
+		assertEquals(initSize, list.size());
 	}
 	
-	@Ignore 
+	//@Ignore 
 	@Test
 	public void set_replacesCurrentItem() {
 		
-	}
-	
-	@Ignore 
-	@Test
-	public void set_failsForInvalidIndex() {
+		//after setting index 1 to 100
+		list.set(1,100);
+		
+		//we should get 100 back grom index 1
+		assertEquals(100, (int) list.get(1));
 		
 	}
 	
-	@Ignore 
+	//@Ignore 
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void set_failsForInvalidIndex() {
+		list.set(100, 100);
+	}
+	
+	//@Ignore 
 	@Test
 	public void remove_removesTheItemFromValidIndex() {
-		
+		list.remove(0);
+		//after removeing 0th item, it shouldn't be present in the list any more
+		assertNotEquals(testData[0], (int) list.get(0));
 	}
 	
 	@Ignore 
@@ -156,9 +196,21 @@ public class LinkedListTests {
 		
 	}
 	
-	@Ignore 
+	//@Ignore 
 	@Test
-	public void get_removeReturnsTheRemovedItem() {
+	public void remove_removeReturnsTheRemovedItem() {
+		
+		int delItem=list.remove(1);
+		
+		assertEquals(testData[1], delItem);
+		
+	}
+	@Test
+	public void remove_resizesTheList() {
+		//after removing an item
+		list.remove(1);
+		//the list size should decrease
+		assertEquals(initSize-1, list.size());
 		
 	}
 	

@@ -87,19 +87,13 @@ public class LinkedList<X> {
 			n.value=value;
 	}
 	
-	public void remove(int pos) {
-		
-		if(pos<0)
-			return ; //nothing to remove
-		
-		if(first==null) //list is empty
-			return ; //nothing to remove
+	public X remove(int pos) {
 		
 		
 		Node n=locate(pos);
 		
 		if(n==null)
-			return ; //we moved past the last one. Nothing to remove
+			return null; //we moved past the last one. Nothing to remove
 		
 		//delete the 'nth' node
 		
@@ -112,6 +106,9 @@ public class LinkedList<X> {
 			n.next.previous=n.previous; //not the last node
 		//else
 			//do nothing	
+		
+		count--;
+		return n.value;
 		
 		
 	}
