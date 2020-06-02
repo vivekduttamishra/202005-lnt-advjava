@@ -1,6 +1,6 @@
 package in.conceptarchitect.collections;
 
-
+import java.util.Iterator;
 
 //X is some unknown which will be supplied when creating a object
 public class LinkedList<X> {  	
@@ -12,12 +12,14 @@ public class LinkedList<X> {
 	Node first;
 	int count;
 	Node last; //always remember the last position.
+	Node current; //last accessed positon
+	int currentPosition;
 	
 	//add a new value at the end of the list
 	public void add(X value) {
 		
 		
-		Node newNode=new Node();
+		Node newNode=new Node(); //allocate memory
 		newNode.value=value;
 		newNode.next= null; //remember this will be the last node.
 		newNode.previous=last; //current last node is my previous
@@ -59,12 +61,18 @@ public class LinkedList<X> {
 	}
 	
 	private Node locate(int pos) {
-		
+	
 		if(pos<0)
 			pos=size()+pos;
 		
 		if(pos<0 || pos>=size())
 			throw new IndexOutOfBoundsException(pos);
+		
+		if(pos==currentPosition+1) {
+			current=current.next;
+			currentPosition++;
+			return current;
+		}
 		
 		int i=0;
 		Node n=first;
@@ -73,12 +81,17 @@ public class LinkedList<X> {
 			i++;
 			n=n.next;
 		}
+		
+		
+		current=n;
+		currentPosition=pos;
+		
+		
 		return n;
 	}
 	
 	public X get(int pos) {
-		Node n = locate(pos);
-		
+		Node n = locate(pos);	
 		
 		return n.value;
 	}
@@ -93,6 +106,7 @@ public class LinkedList<X> {
 		
 		
 		Node n=locate(pos);
+		
 		
 		
 		//delete the 'nth' node
@@ -150,5 +164,30 @@ public class LinkedList<X> {
 		
 		return str;
 	}
+	
+	public Iterator<X> iterator(){
+		return new MyListIterator();
+	}
+	
+	
+	
+	class MyListIterator implements Iterator<X>{
+
+		@Override
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public X next() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
+	
+	
+	
 		
 }
