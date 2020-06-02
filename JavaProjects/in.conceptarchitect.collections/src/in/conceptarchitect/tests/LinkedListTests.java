@@ -67,7 +67,7 @@ public class LinkedListTests {
 		assertEquals("LinkedList()", list.toString());
 	}
 	
-	//@Ignore
+	//
 	@Test
 	public void add_canAddToAnEmptyList() {
 		
@@ -84,7 +84,7 @@ public class LinkedListTests {
 		
 	}
 	
-	//@Ignore 
+	// 
 	@Test
 	public void add_addingToANonEmptyListAddsItemAtTheEnd() {
 	
@@ -100,7 +100,7 @@ public class LinkedListTests {
 	
 	}
 	
-	//@Ignore 
+	// 
 	@Test
 	public void add_addedItemsAreShownInToString() {
 		//ARRANGE
@@ -112,7 +112,7 @@ public class LinkedListTests {
 		assertEquals("LinkedList(\t1\t2\t3\t)", list.toString());
 	}
 	
-	//@Ignore 
+	// 
 	@Test
 	public void get_0GetsTheFirstItem() {
 				
@@ -123,7 +123,7 @@ public class LinkedListTests {
 	}
 	
 	
-	//@Ignore 
+	// 
 	@Test
 	public void get_PosReturnsItemsFromZeroBasedIndex() {
 		
@@ -132,13 +132,13 @@ public class LinkedListTests {
 		
 	}
 	
-	//@Ignore 
+	 
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void get_throwsIndexExceptionForInvalidIndex() {
 		list.get(100);
 	}
 	
-	@Ignore 
+	// 
 	@Test
 	public void get_NegativeIndexIsACirclularIndex() {
 		//-1 is last item
@@ -154,7 +154,7 @@ public class LinkedListTests {
 		//you will have to modify LinkedList to implement this feature
 	}
 	
-	@Ignore 
+	// 
 	@Test
 	public void set_setDoesntAddNewItem() {
 	
@@ -164,7 +164,7 @@ public class LinkedListTests {
 		assertEquals(initSize, list.size());
 	}
 	
-	//@Ignore 
+	// 
 	@Test
 	public void set_replacesCurrentItem() {
 		
@@ -176,13 +176,18 @@ public class LinkedListTests {
 		
 	}
 	
-	//@Ignore 
+	// 
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void set_failsForInvalidIndex() {
 		list.set(100, 100);
 	}
 	
-	//@Ignore 
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void set_failsForNegativeIndexLessThanNegativeSize() {
+		list.set(-list.size()-1, 0);
+	}
+	
+	// 
 	@Test
 	public void remove_removesTheItemFromValidIndex() {
 		list.remove(0);
@@ -190,13 +195,19 @@ public class LinkedListTests {
 		assertNotEquals(testData[0], (int) list.get(0));
 	}
 	
-	@Ignore 
+	// 
 	@Test
 	public void remove_usesCircularIndex() {
+		int p=0;
+		for(int i=-list.size();i<=-1;i++) {
+			assertEquals(testData[p], (int)list.remove(i));
+			p++;
+		}
 		
+		assertEquals(0, list.size()); //now list is zero sized
 	}
 	
-	//@Ignore 
+	 
 	@Test
 	public void remove_removeReturnsTheRemovedItem() {
 		

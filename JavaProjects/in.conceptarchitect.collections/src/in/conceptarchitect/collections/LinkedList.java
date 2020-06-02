@@ -60,6 +60,9 @@ public class LinkedList<X> {
 	
 	private Node locate(int pos) {
 		
+		if(pos<0)
+			pos=size()+pos;
+		
 		if(pos<0 || pos>=size())
 			throw new IndexOutOfBoundsException(pos);
 		
@@ -75,16 +78,15 @@ public class LinkedList<X> {
 	
 	public X get(int pos) {
 		Node n = locate(pos);
-		if(n==null)
-			return null;
-		else
-			return n.value;
+		
+		
+		return n.value;
 	}
 	
 	public void set(int pos, X value) {
 		Node n = locate(pos);
-		if(n!=null)
-			n.value=value;
+		
+		n.value=value;
 	}
 	
 	public X remove(int pos) {
@@ -92,8 +94,6 @@ public class LinkedList<X> {
 		
 		Node n=locate(pos);
 		
-		if(n==null)
-			return null; //we moved past the last one. Nothing to remove
 		
 		//delete the 'nth' node
 		
