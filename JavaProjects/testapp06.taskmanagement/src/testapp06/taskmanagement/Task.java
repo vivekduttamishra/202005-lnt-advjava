@@ -4,15 +4,15 @@ import in.conceptarchitect.collections.LinkedList;
 
 public class Task {
 
-	int lastId=0;
+	
 	int id;
 	String title;
 	LinkedList<String> notes=new LinkedList<String>();
 	TaskPriority priority;
 	TaskStatus status;
-	public Task( String title, TaskPriority priority, TaskStatus status, String ...notes) {
+	public Task(  String title, TaskPriority priority, TaskStatus status, String ...notes) {
 		super();
-		this.id = ++lastId;
+		this.id = 0;
 		this.title = title;
 		this.priority = priority;
 		this.status = status;
@@ -23,12 +23,7 @@ public class Task {
 		this(title,TaskPriority.Medium, TaskStatus.pending);
 		
 	}
-	public int getLastId() {
-		return lastId;
-	}
-	public void setLastId(int lastId) {
-		this.lastId = lastId;
-	}
+	
 	public int getId() {
 		return id;
 	}

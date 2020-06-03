@@ -22,6 +22,7 @@ public class TaskManagerSpecs {
 	@Before
 	public void setUp() throws Exception {
 		new TaskDataSource().fetchTasks(manager);
+	
 	}
 
 	@Test
@@ -31,13 +32,15 @@ public class TaskManagerSpecs {
 		assertEquals(11, count);
 	}
 	
+
 	@Test
-	public void getsTaskWithValidId() {
+	public void getByIdReturnsValidTaskForValidId() {
 		int id=2;
-		Task task= manager.getTaskById(id);
-		
+		Task task=manager.getTaskById(id);
+		System.out.println(task);
 		assertEquals(id, task.getId());
 	}
+	
 	
 	@Test(expected = NoSuchElementException.class)
 	public void getsTaskWithInvalidIdThrowsNoSuchElementException() {
@@ -49,7 +52,7 @@ public class TaskManagerSpecs {
 	@Test
 	public void searchCanReturnAListOfPendingTasks() {
 		TaskStatus status=TaskStatus.pending;
-		IndexedList<Task> result= manager.search(); //you need to decide what paramter you will pass
+		IndexedList<Task> result= manager.search(status); //you need to decide what paramter you will pass
 		
 		for(Task task: result) {
 			assertEquals(status, task.getStatus());
@@ -58,9 +61,18 @@ public class TaskManagerSpecs {
 	}
 	
 	@Test
+	public void searchReturnsEmptyListIfNoTaskMatchesStatus() {
+		TaskStatus status=TaskStatus.cancled;
+		IndexedList<Task> result= manager.search(status); //you need to decide what paramter you will pass
+		
+		assertTrue(result.isEmpty());
+		
+	}
+	
+	@Test
 	public void searchCanReturnAListOfHighPriorityTasks() {
 		TaskPriority priority=TaskPriority.High;
-		IndexedList<Task> result= manager.search(); //you need to decide what paramter you will pass
+		IndexedList<Task> result= manager.search(priority); //you need to decide what paramter you will pass
 		
 		for(Task task: result) {
 			assertEquals(priority, task.getPriority());
@@ -72,7 +84,7 @@ public class TaskManagerSpecs {
 	public void searchTaskWithDatabaseInTheirTitle() {
 		String partTitle= "database"; //case insensetive search part match
 		
-		IndexedList<Task> result= manager.search(); //you need to decide what paramter you will pass
+		IndexedList<Task> result= manager.search(partTitle); //you need to decide what paramter you will pass
 		
 		assertEquals(4, result.size());
 		
@@ -88,7 +100,7 @@ public class TaskManagerSpecs {
 	public void searchTaskWithAtExactlyOneNote() {
 		int noteCount=1;
 		
-		IndexedList<Task> result= manager.search(); //you need to decide what paramter you will pass
+		IndexedList<Task> result= manager.search(noteCount); //you need to decide what paramter you will pass
 		
 		
 

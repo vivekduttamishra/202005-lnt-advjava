@@ -2,6 +2,7 @@ package in.conceptarchitect.collections;
 
 import java.util.Iterator;
 
+
 public interface Collection<X> extends Iterable<X> {
 
 	
@@ -45,6 +46,19 @@ public interface Collection<X> extends Iterable<X> {
     	
     	return true;
     }
+    
+    default IndexedList<X> search(Matcher<X> matcher) {
+		
+		LinkedList<X> result=new LinkedList<X>();
+		for(X item : this) {
+			if(matcher.isMatch(item))
+				result.add(item);
+		}
+		return result;
+	}
+
+    
+    
     
     
     //static helper methods
