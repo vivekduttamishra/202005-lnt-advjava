@@ -1,6 +1,6 @@
 package in.conceptarchitect.specs;
 
-import static in.conceptarchitect.unitest.Asserts.assertSubType;
+import static in.conceptarchitect.unitest.Asserts.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -18,6 +18,7 @@ public class DynamicArraySpecs {
 	DynamicArray<Integer> array;
 	int growSize=3;
 	static int tests=0;
+	int [] testData= {100,200,300};
 	
 	@Before
 	public void arrange() {
@@ -78,7 +79,7 @@ public class DynamicArraySpecs {
 	
 	@Test 
 	public void add_addBeyondCapacityIncreasesListCapacityByGrowSize() {
-		//Arrange —> add value till the capacity
+		//Arrange ï¿½> add value till the capacity
 		addItems(growSize);
 		
 		//Act --> Add another value to push it beyond capacity
@@ -135,31 +136,53 @@ public class DynamicArraySpecs {
 		
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test 
 	public void set_0SetsFirstItem() {
-		fail("Not yet implemented");
+		array.add(100);
+		array.add(200);
+		array.set(0, 1000);
+		
+		assertEquals(2, array.size());
+		assertIntEquals(1000, array.get(0));
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test 
 	public void set_minusOneSetsLastItem() {
-		fail("Not yet implemented");
+		addValues();
+		
+		//Act
+		array.set(-1, 1000);
+		
+		//Assert
+		assertIntEquals(1000,array.get(2));
 	}
 	
-	@Ignore
-	@Test
+	//@Ignore
+	@Test(expected=IndexOutOfBoundsException.class)
 	public void set_beyondSizeThrowsIndexOutOfBoundsException() {
-		fail("Not yet implemented");
+		addValues();
+		array.set(3, 1000);
+	}
+	private void addValues() {
+		for(int value : testData)
+			array.add(value);
 	}
 	
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void foreach_CanAccessListUsingForEach() {
-		fail("Not yet implemented");
+		addValues();
+		int p=0;
+		for(int value : array) {
+			assertEquals(testData[p],value);
+			p++;
+		}
 	}
 	
 	
 	
 }
+;

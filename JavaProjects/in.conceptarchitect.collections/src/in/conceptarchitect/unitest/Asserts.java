@@ -1,6 +1,7 @@
 package in.conceptarchitect.unitest;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
+
 
 public class Asserts {
 
@@ -8,6 +9,10 @@ public class Asserts {
 		if(!cls.isInstance(obj)) {
 			throw new AssertionError(obj.getClass().getName()+" not an intance of "+cls.getName());
 		}
+	}
+	
+	public static void assertIntEquals(Object expected, Object actual) {
+		assertEquals((int)expected, (int)actual);
 	}
 	
 }

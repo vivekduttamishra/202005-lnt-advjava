@@ -2,6 +2,7 @@ package in.conceptarchitect.collections;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class DynamicArray<X> implements IndexedList<X>{
 
@@ -48,11 +49,7 @@ public class DynamicArray<X> implements IndexedList<X>{
 		return count;
 	}
 
-	@Override
-	public Iterator<X> iterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	int NormalizeIndex(int pos) {
 		if(pos<0)
@@ -73,12 +70,42 @@ public class DynamicArray<X> implements IndexedList<X>{
 	@Override
 	public void set(int pos, X value) {
 		// TODO Auto-generated method stub
-		
+		pos=NormalizeIndex(pos);
+		values[pos]=value;
 	}
 
 	public int capacity() {
 		// TODO Auto-generated method stub
 		return _capacity;
 	}
+	
+	
+	
+	@Override
+	public Iterator<X> iterator() {
+		// TODO Auto-generated method stub
+		return new _Iterator();
+	}
+	
+	class _Iterator implements Iterator<X>{
+
+		int pos=0;
+		@Override
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return pos< size();
+		}
+
+		@Override
+		public X next() {
+			// TODO Auto-generated method stub
+			if(hasNext())
+				return values[pos++];
+			else
+				throw new NoSuchElementException();
+		}
+		
+	}
+	
 
 }
