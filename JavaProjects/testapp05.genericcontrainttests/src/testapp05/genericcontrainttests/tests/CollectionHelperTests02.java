@@ -5,7 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import in.conceptarchitect.collections.Collection;
 import in.conceptarchitect.collections.DynamicArray;
+import in.conceptarchitect.collections.IndexedList;
 import in.conceptarchitect.collections.LinkedList;
 
 import static in.conceptarchitect.collections.CollectionHelper.*;
@@ -15,7 +17,7 @@ import testapp05.genericcontrainttests.business.Animal;
 import testapp05.genericcontrainttests.business.Horse;
 import testapp05.genericcontrainttests.business.Tiger;
 
-public class CollectionHelperTests {
+public class CollectionHelperTests02 {
 
 	Tiger tiger1, tiger2, tiger3;
 	LinkedList<Tiger> tigers;
@@ -29,39 +31,29 @@ public class CollectionHelperTests {
 		tiger2=new Tiger("Mr Tiger",8,10);
 		tiger3=new Tiger("Moti",10,8);
 	
-		tigers=new LinkedList<Tiger>();
-		tigers.add(tiger1);
-		tigers.add(tiger2);
-		tigers.add(tiger3);
+		tigers=IndexedList.createList(tiger1,tiger2,tiger3);
 		
 		
-		horse1=new Horse("Chetak",12,30);
-		horse2=new Horse("Badal",8,40);
-		horse3=new Horse("Hero",10,50);
+		
+		
+		horses.addMany(
+				new Horse("Chetak",12,30),
+				new Horse("Badal",8,40),
+				new Horse("Hero",10,50)
+		);
 	
-		horses.add(horse1);
-		horses.add(horse2);
-		horses.add(horse3);
+		
 		
 	}
 
-	@Test
-	public void idIsHashCode() {
-		
-		int id= id(tiger1);
-		assertEquals(tiger1.hashCode(), id);
-		
-	     
-	     id=id(horse1);
-	     assertEquals(horse1.hashCode(), id);
-	}
+	
 	
 	@Test
 	public void indexOfReturns0BasedIndexForItemsFound() {
 		
 		LinkedList<?> objects=tigers;
 		
-		int pos=indexOf(tigers, tiger2);
+		int pos=tigers.indexOf(tiger2);  //indexOf(tigers, tiger2);
 		
 		assertEquals(1, pos);
 				
@@ -69,7 +61,7 @@ public class CollectionHelperTests {
 	
 	@Test
 	public void indexOfReturnsMinusOneForNotFoundItem() {
-		int pos= indexOf(tigers,new Tiger("Don",11,9));
+		int pos= tigers.indexOf(new Tiger("Don",11,9));
 		
 		assertEquals(-1, pos);
 		
@@ -90,7 +82,9 @@ public class CollectionHelperTests {
 	public void canCopySameTypeList() {
 		DynamicArray<Tiger> newTigers= new DynamicArray<Tiger>(5);
 		
-		copy(tigers,newTigers);
+		//copy(tigers,newTigers);
+		
+		Collection.copy(tigers, newTigers);
 		
 		for(int i=0;i<tigers.size();i++) {
 			assertEquals(tigers.get(i),newTigers.get(i));
@@ -99,12 +93,13 @@ public class CollectionHelperTests {
 	
 	@Test
 	public void canCopyListToSuperList() {
-		DynamicArray<Animal> newTigers= new DynamicArray<Animal>(5);
+		DynamicArray<Animal> animals= new DynamicArray<Animal>(5);
 		
-		copy2(tigers,newTigers);
+		//copy2(tigers,newTigers);
+		Collection.copy(tigers, animals);
 		
 		for(int i=0;i<tigers.size();i++) {
-			assertEquals(tigers.get(i),newTigers.get(i));
+			assertEquals(tigers.get(i),animals.get(i));
 		}
 	}
 	
