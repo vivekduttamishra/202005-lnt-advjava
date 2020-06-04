@@ -10,19 +10,19 @@ public class CollectionHelper {
 		return item.toString();
 	}
 
-	public static  int indexInObjectList(IndexedList<Object> list, Object value) {
-		
-		
-		for(int p=0; p<list.size(); p++) {
-			Object listValue= list.get(p)   ; 
-			if(listValue.equals(value))
-				return p;
-		}
-		
-		list.add("hello world"); //you can add invalid object
-		
-		return -1;
-	}
+//	public static  int indexInObjectList(IndexedList<Object> list, Object value) {
+//		
+//		
+//		for(int p=0; p<list.size(); p++) {
+//			Object listValue= list.get(p)   ; 
+//			if(listValue.equals(value))
+//				return p;
+//		}
+//		
+//		list.add("hello world"); //you can add invalid object
+//		
+//		return -1;
+//	}
 	
 	public static  int indexOf(IndexedList<?> list, Object value) {
 		

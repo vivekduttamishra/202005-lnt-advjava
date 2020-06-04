@@ -1,4 +1,4 @@
-package in.conceptarchitect.tests;
+package in.conceptarchitect.collections;
 
 import java.util.Iterator;
 

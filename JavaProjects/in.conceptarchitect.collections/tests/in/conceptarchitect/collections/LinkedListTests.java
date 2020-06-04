@@ -1,4 +1,4 @@
-package in.conceptarchitect.tests;
+package in.conceptarchitect.collections;
 
 //import all static methods from Assert class
 //this way all static method of the calss can be invoked without using Class reference
