@@ -9,6 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import in.conceptarchitect.helpers.AverageFinder;
+
 public class IntTreeSpect {
 
 	IntTree tree;
@@ -109,18 +111,38 @@ public class IntTreeSpect {
 		
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void add_allUniqueValuesAreAddedToTheTree() {
 		
 		addValuesToTree();
 		
-		assertEquals(values.length, tree.size());
+		int x; //non-final value type cant be used inside  anonymous class or lambda
 		
-		for(int value : values) {
-			assertTrue(tree.contains(value));
-		}
 		
+		final int []count= {0}; //hack: create an array (object) and have value
+		
+		tree.inOrder(v-> count[0]++);
+		
+		assertEquals(values.length, count[0]);
+		
+	}
+	
+	@Test
+	public void inorder_canCoutItemsOfTheList() {
+		
+		addValuesToTree();
+		
+		
+		Counter counter=new Counter();
+		
+		//signature mismatch. increment takes no argument
+		//Action interface takes 1 argument
+		//tree.inOrder(counter::increment);
+		
+		tree.inOrder(v-> counter.increment());
+		
+		assertEquals(values.length, counter.getValue());
 		
 	}
 
@@ -133,15 +155,22 @@ public class IntTreeSpect {
 		
 		//Arrange
 		addValuesToTree();
+		ListBuilderAction<Integer> builder=new ListBuilderAction<Integer>();
 		
 		//ACT
-		System.out.println("inorder");
-		tree.inOrder();
+		LinkedList<Integer> results= tree.inOrder(builder);
+		
+		//LinkedList<Integer> results=builder.getResult();
 		
 		//ASSERT
-		fail("I don't know what to assert!");
+		assertRightSequence(results, expectedInorder);
 		
 		
+	}
+	private void assertRightSequence(LinkedList<Integer> actual, int... expected) {
+		for(int i=0;i<expected.length;i++) {
+			assertIntEquals(expected[i], actual.get(i));
+		}
 	}
 	
 
@@ -152,12 +181,14 @@ public class IntTreeSpect {
 		//Arrange
 		addValuesToTree();
 		
+		LinkedList<Integer> results=new LinkedList<Integer>();
+		
 		//ACT
-		System.out.println("preorder");
-		tree.preOrder();
+		tree.preOrder(value-> results.add(value));
+		
 		
 		//ASSERT
-		fail("I don't know what to assert!");
+		assertRightSequence(results, expectedPreorder);
 		
 		
 	}
@@ -170,16 +201,62 @@ public class IntTreeSpect {
 		//Arrange
 		addValuesToTree();
 		
+		LinkedList<Integer> results=new LinkedList<Integer>();
+		
+		
 		//ACT
-		System.out.println("postorder");
-		tree.postOrder();
+		//tree.postOrder(value->results.add(value));
+		tree.postOrder(results::add);
+		
 		
 		//ASSERT
-		fail("I don't know what to assert!");
+		assertRightSequence(results, expectedPostorder);
 		
 		
 	}
 	
+	
+	@Test
+	public void main_printValuesInorderPreOrderPostOrder() {
+		
+		addValuesToTree();
+		
+		System.out.println("inorder");
+		tree.inOrder(value-> System.out.println(value));
+		
+		System.out.println("preorder");
+		tree.preOrder(value-> System.out.print(value+"\t"));
+		
+		
+		System.out.println("\npostorder");
+		tree.postOrder(value-> System.out.println(value));
+		
+	}
+	
+	
+	@Test
+	public void preorder_canCalculateAverage() {
+		
+		AverageFinder<Integer> calc=new AverageFinder<Integer>();
+		
+		addValuesToTree();
+		
+		double average= tree.preOrder(calc);
+		
+		LinkedList<Integer> list=new LinkedList<Integer>();
+		
+		tree.preOrder(list::add); //get all value in a list
+		
+		
+		//action can be applied to list also
+		double listAverage= list.each(calc);
+		
+		assertEquals(listAverage, average, 0.01);
+		
+		
+		
+		
+	}
 	
 	
 	

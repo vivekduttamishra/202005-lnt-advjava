@@ -29,6 +29,17 @@ public interface Collection<X> extends Iterable<X> {
 		return false;
 	}
 	
+	default <E> E each(Action<X,E> action) {
+		if(!action.init())
+			return null;
+		for(X value : this)
+			action.execute(value);
+		
+		return action.result();
+	}
+	
+	
+	
     default boolean containsAny(X ... items) {
     	for(X item : items) {
     		if(contains(item))

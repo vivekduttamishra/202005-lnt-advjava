@@ -22,6 +22,7 @@ public class IntTree implements Collection<Integer>{
 	public void add(Integer value) {
 		// TODO Auto-generated method stub
 		root=add(root,value);
+		count++;
 	}
 	
 	
@@ -47,51 +48,70 @@ public class IntTree implements Collection<Integer>{
 		return count;
 	}
 	
-	public void inOrder() {
-		inOrder(root);
+	public <E> E inOrder(Action<Integer,E> action) {
+		if(!action.init())
+			return null;
+		
+		inOrder(root,action);
+		
+		return action.result();
 	}
 
-	private void inOrder(Node root) {
+	private <E> void inOrder(Node root, Action<Integer,E> action) {
 		// TODO Auto-generated method stub
 		if(root==null)
 			return;
 		
-		inOrder(root.left);
-		System.out.println(root.value);
-		inOrder(root.right);
+		inOrder(root.left,action);
+		//System.out.println(root.value);
+		action.execute(root.value);
+		
+		inOrder(root.right,action);
 		
 	}
 
-	public void preOrder() {
-		preOrder(root);
+	public <E> E preOrder(Action<Integer,E> action) {
+		
+		if(!action.init())
+			return null;
+		
+		preOrder(root,action);
+		
+		return action.result();
 	}
 
-	private void preOrder(Node root) {
+	private <E> void preOrder(Node root,Action<Integer,E> action) {
 		// TODO Auto-generated method stub
 		if(root==null)
 			return;
 		
-		System.out.println(root.value);
-		preOrder(root.left);
+		//System.out.println(root.value);
+		action.execute(root.value);
+
+		preOrder(root.left,action);
 		
-		preOrder(root.right);
+		preOrder(root.right,action);
 		
 	}
 	
-	public void postOrder() {
-		postOrder(root);
+	public <E> E postOrder(Action<Integer,E> action) {
+		if(!action.init())
+			return null;
+		postOrder(root,action);
+		return action.result();
 	}
 
-	private void postOrder(Node root) {
+	private <E> void postOrder(Node root,Action<Integer,E> action) {
 		// TODO Auto-generated method stub
 		if(root==null)
 			return;
 		
 		
-		postOrder(root.left);
+		postOrder(root.left,action);
 		
-		postOrder(root.right);
-		System.out.println(root.value);
+		postOrder(root.right,action);
+		//System.out.println(root.value,action);
+		action.execute(root.value);
 		
 	}
 	@Override
