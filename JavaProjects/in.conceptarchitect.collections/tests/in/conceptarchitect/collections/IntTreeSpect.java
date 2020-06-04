@@ -258,6 +258,21 @@ public class IntTreeSpect {
 		
 	}
 	
+	@Test
+	public void iterate_treeElementsCanBeIterated() {
+		
+		LinkedList<Integer> list=new LinkedList<Integer>();
+		
+		for(int value: tree) {
+			list.add(value);
+		}
+		
+		assertEquals(tree.size(), list.size());
+
+		//list should by default loop preorder
+		assertRightSequence(list, expectedPreorder);
+	}
+	
 	
 	
 	
