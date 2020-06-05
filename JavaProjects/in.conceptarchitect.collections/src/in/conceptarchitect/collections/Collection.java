@@ -1,6 +1,8 @@
 package in.conceptarchitect.collections;
 
 import java.util.Iterator;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 
 public interface Collection<X> extends Iterable<X> {
@@ -79,6 +81,12 @@ public interface Collection<X> extends Iterable<X> {
     		to.add(value);
     }
     
+    
+    default Stream<X> stream(){
+    	
+    	return StreamSupport.stream(this.spliterator(), true);
+    	
+    }
     
     
 }
