@@ -1,6 +1,6 @@
 package threaddemo01.mainthread;
 
-import static in.conceptarchitect.threading.ThreadUtils.logLine;
+import static in.conceptarchitect.threading.ThreadUtils.println;
 
 import static in.conceptarchitect.threading.ThreadUtils.*;
 
@@ -37,14 +37,14 @@ public class Program {
 		
 		//waitForThreads(t1, t2, t3);  //main thread will sleep till t1 finishes
 		
-		threadAwait(t1,t2,t3);
+		waitFor(t1,t2,t3);
 		
 		
 		
 		
 		//this should be last line printed
 	
-		logLine("\nProgram Ends");
+		println("\nProgram Ends");
 		
 		
 		
@@ -91,13 +91,13 @@ public class Program {
 		
 		
 		
-		logLine("starts");
+		println("starts");
 		
 		while(max>=0) {
-			logLine("counts %d",max);
+			println("counts %d",max);
 			max--;
 		}
 		
-		logLine("ends");
+		println("ends");
 	}
 }

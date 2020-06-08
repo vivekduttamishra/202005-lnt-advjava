@@ -32,7 +32,7 @@ public class Factorial {
 		
 		int fx=1;
 		for(int i=1;i<=x;i++) {
-			threadSleep(1000);
+			sleep(1000);
 			fx*=i;
 		}
 		
@@ -43,7 +43,7 @@ public class Factorial {
 	
 	public void await() {
 		if(thread.isAlive())
-			threadAwait(thread);
+			waitFor(thread);
 	}
 
 

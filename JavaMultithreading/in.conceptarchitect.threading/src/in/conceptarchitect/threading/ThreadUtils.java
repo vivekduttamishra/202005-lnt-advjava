@@ -2,14 +2,16 @@ package in.conceptarchitect.threading;
 
 public class ThreadUtils {
 
-	public static void logLine(Object format, Object ...args) {
+	public static void println(Object format, Object ...args) {
 		
-		log(format+"\n",args);
+		print(format+"\n",args);
 		
 		
 	}
 	
-	public static void log(Object format, Object ...args) {
+	
+	
+	public static void print(Object format, Object ...args) {
 		
 		String message=String.format(format.toString(), args);
 		
@@ -41,7 +43,7 @@ public class ThreadUtils {
 	
 	
 	
-	public static void threadSleep(int ms) {
+	public static void sleep(int ms) {
 		try {
 			Thread.sleep(ms);
 		} catch (InterruptedException e) {
@@ -50,7 +52,8 @@ public class ThreadUtils {
 	}
 	
 	
-	public static void threadAwait(Thread ...threads) {
+	
+	public static void waitFor(Thread ...threads) {
 		
 		try {
 			for(Thread thread:threads)

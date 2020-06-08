@@ -30,14 +30,14 @@ public class CountDownTask implements Runnable{
 		
 		
 	
-		logLine("starts");
+		println("starts");
 		
 		while(max>=0) {
-			logLine("counts %d",max);
+			println("counts %d",max);
 			max--;
 		}
 		
-		logLine("ends");
+		println("ends");
 	}
 
 }

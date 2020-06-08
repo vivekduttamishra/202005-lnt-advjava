@@ -15,7 +15,7 @@ public class Program {
 		t1.start(); //shouldn't start twice
 		
 	
-		ThreadUtils.logLine("Program Ends");
+		ThreadUtils.println("Program Ends");
 		
 	}
 }

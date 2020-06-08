@@ -1,6 +1,6 @@
 package threaddemo01.mainthread;
 
-import static in.conceptarchitect.threading.ThreadUtils.logLine;
+import static in.conceptarchitect.threading.ThreadUtils.println;
 
 import static in.conceptarchitect.threading.ThreadUtils.*;
 
@@ -26,7 +26,7 @@ public class Program {
 		
 		
 	
-		logLine("Program Ends");
+		println("Program Ends");
 		
 	}
 	
@@ -38,13 +38,13 @@ public class Program {
 		
 		
 		
-		logLine("starts");
+		println("starts");
 		
 		while(max>=0) {
-			logLine("counts %d",max);
+			println("counts %d",max);
 			max--;
 		}
 		
-		logLine("ends");
+		println("ends");
 	}
 }

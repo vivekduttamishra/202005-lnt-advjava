@@ -1,6 +1,6 @@
 package threaddemo01.mainthread;
 
-import static in.conceptarchitect.threading.ThreadUtils.logLine;
+import static in.conceptarchitect.threading.ThreadUtils.println;
 
 import static in.conceptarchitect.threading.ThreadUtils.*;
 
@@ -18,10 +18,10 @@ public class Program {
 		
 		
 		
-		threadAwait(t1,t3);
+		waitFor(t1,t3);
 	
 	
-		logLine("main ends");
+		println("main ends");
 	
 	}
 	
@@ -53,11 +53,11 @@ public class Program {
 		//threadAwait(t1,t2,t3);
 		
 		//as a good practice main should wait for non-daeomon threads only
-		threadAwait(t1,t3);
+		waitFor(t1,t3);
 		
 		//now that non-daemon threads are dead, daemon will be killed.
 		
-		logLine("\nProgram Ends");
+		println("\nProgram Ends");
 		
 		
 		
@@ -72,13 +72,13 @@ public class Program {
 		
 		
 		
-		logLine("starts");
+		println("starts");
 		
 		while(max>=0) {
-			logLine("counts %d",max);
+			println("counts %d",max);
 			max--;
 		}
 		
-		logLine("ends");
+		println("ends");
 	}
 }

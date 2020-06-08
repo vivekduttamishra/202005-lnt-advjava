@@ -16,7 +16,7 @@ public class Program {
 		t1.start();
 		t2.start();
 	
-		ThreadUtils.logLine("Program Ends");
+		ThreadUtils.println("Program Ends");
 		
 	}
 }

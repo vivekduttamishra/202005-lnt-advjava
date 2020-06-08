@@ -1,6 +1,6 @@
 package threaddemo01.mainthread;
 
-import static in.conceptarchitect.threading.ThreadUtils.logLine;
+import static in.conceptarchitect.threading.ThreadUtils.println;
 
 import static in.conceptarchitect.threading.ThreadUtils.*;
 import static in.conceptarchitect.utils.PerformanceMeasure.*;
