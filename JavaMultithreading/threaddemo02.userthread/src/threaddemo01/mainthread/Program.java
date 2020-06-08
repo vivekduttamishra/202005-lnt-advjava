@@ -10,6 +10,7 @@ public class Program {
 		
 		newThread.start();  //creates a new thread and invokes run() on new thread
 		
+		
 		printer.run();
 		
 		//How many times run() method will be called?
