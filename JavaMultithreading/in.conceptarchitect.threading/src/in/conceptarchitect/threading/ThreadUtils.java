@@ -43,7 +43,7 @@ public class ThreadUtils {
 	
 	public static void threadSleep(int ms) {
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(ms);
 		} catch (InterruptedException e) {
 			new ThreadInterruptedException(e.getMessage(),e);
 		} 
