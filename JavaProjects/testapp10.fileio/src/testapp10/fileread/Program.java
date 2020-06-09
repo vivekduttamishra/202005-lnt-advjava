@@ -1,8 +1,12 @@
 package testapp10.fileread;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Program {
 
@@ -10,12 +14,51 @@ public class Program {
 		// TODO Auto-generated method stub
 		
 
-		copyFileByteByByte("./src/mydata.txt", "./src/mynewdata.txt");
+		//copyFileByteByByte("./src/mydata.txt", "./src/mynewdata.txt");
+		copyLineByLine("./src/mydata.txt","./src/mylinedata.txt");
 		readFile("./src/mynewdata.txt");
 		
 		
 		
 		
+	}
+	
+	private static void copyLineByLine(String srcPath, String targetPath) {
+		FileReader in=null;
+		FileWriter out=null;
+		BufferedReader reader=null;
+		PrintWriter writer=null;
+		
+		try{
+			
+			in= new FileReader(srcPath);  //reads from a file using read
+			reader=new BufferedReader(in);  //add line by line reading ability
+			
+			
+			out=new FileWriter(targetPath); //write to a file using write method
+			writer=new PrintWriter(out);    //adds print(), println(), printf() functions to any writer
+			
+			
+			String line=reader.readLine(); //read one line of information
+			
+			while(line!=null) {   //when line becomes null you have reached the end
+				
+				writer.println(line);  //write one line of intfo
+				line=reader.readLine(); //read the next line
+			}
+		
+			
+
+		}catch(IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			try{
+				in.close(); 
+				out.close();
+				reader.close();
+				writer.close();
+			} catch(IOException ex) { /* do nothing*/}
+		}
 	}
 	
 	

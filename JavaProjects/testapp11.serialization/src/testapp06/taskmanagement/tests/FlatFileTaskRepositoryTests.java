@@ -24,6 +24,8 @@ public class FlatFileTaskRepositoryTests {
 	
 	public void setUp() throws Exception {
 		
+		
+		
 		if(file.exists())
 			file.delete(); //delete test file if it exists
 		
@@ -31,6 +33,9 @@ public class FlatFileTaskRepositoryTests {
 		
 	}
 
+	
+	
+	
 	@Test
 	public void canLoadNonExisitingRepository() {
 		assertNotNull(repository);
