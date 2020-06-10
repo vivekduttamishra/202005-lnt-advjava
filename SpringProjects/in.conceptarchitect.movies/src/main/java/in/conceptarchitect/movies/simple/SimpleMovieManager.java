@@ -4,17 +4,37 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import in.conceptarchitect.movies.Movie;
 import in.conceptarchitect.movies.MovieManager;
 import in.conceptarchitect.movies.MovieRepository;
 import in.conceptarchitect.movies.MovieValidator;
 import in.conceptarchitect.practices.ValidationMessage;
 
+
+@Component
 public class SimpleMovieManager implements MovieManager {
 	
+	
+	
 	MovieRepository repository;
+	
+	@Autowired
 	MovieValidator validator;
 	
+	
+	@Autowired
+	public SimpleMovieManager(MovieRepository repository) {
+		this.repository=repository;
+		System.out.println("Simple Movie Manager Object created with hashCode"+hashCode());
+		System.out.println("Repository Injected is "+repository);
+	}
+	
+	public SimpleMovieManager(){
+		System.out.println("Simple Movie Manager Object created with hashCode"+hashCode());
+	}
 
 	public MovieRepository getRepository() {
 		return repository;

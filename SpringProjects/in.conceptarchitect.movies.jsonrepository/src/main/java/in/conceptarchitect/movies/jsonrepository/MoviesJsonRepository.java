@@ -8,11 +8,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import in.conceptarchitect.movies.Movie;
 import in.conceptarchitect.movies.MovieRepository;
+
+@Repository("moviesRepository") //same as bean name
+//default bean name is moviesJsonRepository-->change the default name using a qualifier
 
 public class MoviesJsonRepository implements MovieRepository{
 	
@@ -41,6 +47,16 @@ public class MoviesJsonRepository implements MovieRepository{
 		
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@Override
 	public String add(Movie entity) {
