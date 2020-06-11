@@ -3,51 +3,37 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>in.conceptarchitect</groupId>
-	<artifactId>testapp.movieconsole01</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	
-	<properties>
-		<spring.version>5.1.9.RELEASE</spring.version>
-	</properties>
+	<artifactId>in.conceptarchitect.movies.jdbcrepository</artifactId>
+	<version>1.0</version>
 
 	<dependencies>
-	
-	
-		 <dependency>
-			<groupId>in.conceptarchitect</groupId>
-			<artifactId>
-   			in.conceptarchitect.movies.jsonrepository
-   		</artifactId>
-			<version>1.0</version>
-		</dependency> 
-	
+
+
+
 		<dependency>
 			<groupId>in.conceptarchitect</groupId>
 			<artifactId>in.conceptarchitect.movies</artifactId>
 			<version>1.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>5.1.9.RELEASE</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.20</version>
 		</dependency>
 
 
-
 		<dependency>
-			<groupId>in.conceptarchitect</groupId>
-			<artifactId>
-				in.conceptarchitect.movies.jdbcrepository
-			</artifactId>
-			<version>1.0</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+
 		</dependency>
+
+
 	</dependencies>
-
-
-
-
 
 
 

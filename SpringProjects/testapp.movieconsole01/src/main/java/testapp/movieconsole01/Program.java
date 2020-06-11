@@ -9,7 +9,7 @@ import in.conceptarchitect.movies.Movie;
 import in.conceptarchitect.movies.MovieManager;
 import in.conceptarchitect.movies.MovieRepository;
 import in.conceptarchitect.movies.MovieValidator;
-import in.conceptarchitect.movies.jsonrepository.MoviesJsonRepository;
+//import in.conceptarchitect.movies.jsonrepository.MoviesJsonRepository;
 import in.conceptarchitect.movies.simple.SimpleMovieManager;
 import in.conceptarchitect.movies.simple.SimpleMovieValidator;
 
@@ -84,19 +84,20 @@ public class Program {
 	private static MovieManager getMovieManager0() {
 		// TODO Auto-generated method stub
 
-		String path = "src/moviedb.json";
-		MovieRepository rep = MoviesJsonRepository.load(path);
-
-		MovieValidator validator = new SimpleMovieValidator();
-
-		SimpleMovieManager manager = new SimpleMovieManager();
-
-		// define the dependnecies
-
-		manager.setValidator(validator);
-
-		manager.setRepository(rep);
-
+//		String path = "src/moviedb.json";
+//		MovieRepository rep = MoviesJsonRepository.load(path);
+//
+//		MovieValidator validator = new SimpleMovieValidator();
+//
+//		SimpleMovieManager manager = new SimpleMovieManager();
+//
+//		// define the dependnecies
+//
+//		manager.setValidator(validator);
+//
+//		manager.setRepository(rep);
+//
+		MovieManager manager=null;
 		return manager;
 	}
 
@@ -131,12 +132,12 @@ public class Program {
 		if (!Input.read("Do you want to add dummy movies?").contentEquals("y"))
 			return;
 
-		manager.addMovie(createMovie("tt1231", "Harry Potter and the Half blood prince", 7.8,
-				"The Sixth part of harry potter saga"));
-		manager.addMovie(createMovie("tt1232", "Harry Potter and the chamber of secrets", 8.2,
+		manager.addMovie(createMovie("tt1230", "Harry Potter and the Order of Phonex", 6,
+				"The Fifth part of harry potter saga"));
+		manager.addMovie(createMovie("tt1231", "Harry Potter and the chamber of secrets", 8.2,
 				"The Second part of harry potter saga"));
-		manager.addMovie(createMovie("tt1233", "Avengers: The End Game", 8.2, "The last part of Avengers"));
-		manager.addMovie(createMovie("tt1234", "XMen", 7.2, "First Part of Xmen series"));
+		manager.addMovie(createMovie("tt1232", "X2", 7.5, "Part 2 of XMen series"));
+		manager.addMovie(createMovie("tt1233", "XMen", 7.2, "First Part of Xmen series"));
 
 	}
 

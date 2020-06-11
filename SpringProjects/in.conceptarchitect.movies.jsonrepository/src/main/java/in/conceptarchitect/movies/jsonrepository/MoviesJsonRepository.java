@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import in.conceptarchitect.movies.Movie;
 import in.conceptarchitect.movies.MovieRepository;
 
-@Repository("moviesRepository") //same as bean name
+//@Repository("moviesRepository") //same as bean name
 //default bean name is moviesJsonRepository-->change the default name using a qualifier
 
 public class MoviesJsonRepository implements MovieRepository{
