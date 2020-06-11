@@ -22,17 +22,17 @@ public class Program {
 
 		MovieManager manager = getMovieManager();
 
-		addDummyMovies(manager);
-		addMovie(manager);
+		//addDummyMovies(manager);
+		//addMovie(manager);
 		getAllMovies(manager);
 
 	}
 
 	public static MovieManager getMovieManager() {
 
-		//ApplicationContext context = new ClassPathXmlApplicationContext("classpath:config/movieconfig.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:config/movieconfig.xml");
 		
-		ApplicationContext context=new AnnotationConfigApplicationContext(MoviesConfig.class);
+		//ApplicationContext context=new AnnotationConfigApplicationContext(MoviesConfig.class);
 		
 		return context.getBean(MovieManager.class);
 	}

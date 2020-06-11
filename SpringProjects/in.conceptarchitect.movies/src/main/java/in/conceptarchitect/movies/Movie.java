@@ -1,5 +1,7 @@
 package in.conceptarchitect.movies;
 
+import in.conceptarchitect.practices.jdbc.TableColumn;
+
 /*
  
  {
@@ -21,12 +23,14 @@ public class Movie {
 	
 	String year; //may be a year range for tv shows  1999-2004
 	
+	@TableColumn("imdb_id")
 	String imdbID;
 	
 	String type;
 	
 	String poster;
 	
+	@TableColumn("imdb_rating")
 	double imdbRating;
 	
 	String description;

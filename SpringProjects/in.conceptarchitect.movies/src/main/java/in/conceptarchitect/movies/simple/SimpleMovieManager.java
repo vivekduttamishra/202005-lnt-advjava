@@ -12,6 +12,7 @@ import in.conceptarchitect.movies.MovieManager;
 import in.conceptarchitect.movies.MovieRepository;
 import in.conceptarchitect.movies.MovieValidator;
 import in.conceptarchitect.practices.ValidationMessage;
+import in.conceptarchitect.practices.aop.LogIt;
 
 
 @Component
@@ -62,6 +63,8 @@ public class SimpleMovieManager implements MovieManager {
 		return repository.getById(imdbId);
 	}
 
+	
+	@LogIt
 	public Collection<Movie> getAllMovies() {
 		// TODO Auto-generated method stub
 		return repository.getAll();

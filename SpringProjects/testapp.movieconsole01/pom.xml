@@ -5,22 +5,22 @@
 	<groupId>in.conceptarchitect</groupId>
 	<artifactId>testapp.movieconsole01</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<properties>
 		<spring.version>5.1.9.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
-	
-	
-		 <dependency>
+
+
+		<dependency>
 			<groupId>in.conceptarchitect</groupId>
 			<artifactId>
    			in.conceptarchitect.movies.jsonrepository
    		</artifactId>
 			<version>1.0</version>
-		</dependency> 
-	
+		</dependency>
+
 		<dependency>
 			<groupId>in.conceptarchitect</groupId>
 			<artifactId>in.conceptarchitect.movies</artifactId>
@@ -31,8 +31,16 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>5.1.9.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
 
 
 

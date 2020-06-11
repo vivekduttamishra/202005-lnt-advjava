@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import in.conceptarchitect.movies.Movie;
 import in.conceptarchitect.movies.MovieRepository;
 import in.conceptarchitect.practices.jdbc.JdbcManager;
+import in.conceptarchitect.practices.jdbc.ObjectResultSetMapper;
 import in.conceptarchitect.practices.jdbc.SqlRuntimeException;
 
 @Repository("moviesRepository")
@@ -63,10 +64,11 @@ public class MoviesJdbcRepository implements MovieRepository {
 	
 
 	@Override
+	
 	public Collection<Movie> getAll() {
 			
 		
-		return jdbc.list("select * from movies", this::mapMovie);
+		return jdbc.list("select * from movies", ObjectResultSetMapper.forType(Movie.class));
 		
 		
 	}

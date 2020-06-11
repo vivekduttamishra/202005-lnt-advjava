@@ -10,6 +10,10 @@ public interface MovieManager {
 	
 	Movie getMovieById(String imdbId);
 	
+	
+	//I want to log this call.
+	//I want to run LogMessage's logAfterMethodCall()
+	//to run after getAllMovies() has executed
 	Collection<Movie> getAllMovies();
 	
 	Collection<Movie> search(String text);
