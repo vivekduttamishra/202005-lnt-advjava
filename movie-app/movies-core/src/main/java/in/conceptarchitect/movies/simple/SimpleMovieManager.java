@@ -4,25 +4,39 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import in.conceptarchitect.movies.Movie;
 import in.conceptarchitect.movies.MovieManager;
 import in.conceptarchitect.movies.MovieRepository;
 import in.conceptarchitect.movies.MovieValidator;
 import in.conceptarchitect.practices.ValidationMessage;
 
+@Component
 public class SimpleMovieManager implements MovieManager {
 	
 	MovieRepository repository;
-	MovieValidator validator;
+	@Autowired MovieValidator validator;
 	
 
 	public MovieRepository getRepository() {
 		return repository;
 	}
 
+	@Autowired
 	public void setRepository(MovieRepository repository) {
 		this.repository = repository;
 	}
+	
+	public MovieValidator getValidator() {
+		return validator;
+	}
+	
+	public void setValidator(MovieValidator validator) {
+		this.validator = validator;
+	}
+
 
 	public ValidationMessage addMovie(Movie movie) {
 		// TODO Auto-generated method stub
@@ -90,12 +104,5 @@ public class SimpleMovieManager implements MovieManager {
 
 	}
 
-	public MovieValidator getValidator() {
-		return validator;
-	}
-
-	public void setValidator(MovieValidator validator) {
-		this.validator = validator;
-	}
 
 }

@@ -16,10 +16,10 @@ import in.conceptarchitect.movies.simple.SimpleMovieValidator;
 @ComponentScan(basePackages = {"in.conceptarchitect"} )
 public class MovieBootServiceApplication {
 	
-	@Bean 
-	public MovieValidator validator() {
-		return new SimpleMovieValidator();
-	}
+//	@Bean 
+//	public MovieValidator validator() {
+//		return new SimpleMovieValidator();
+//	}
 	
 	@Bean
 	public  MovieRepository repository() {
@@ -27,13 +27,13 @@ public class MovieBootServiceApplication {
 		return new MovieJsonRepository(path);
 	}
 	
-	@Bean MovieManager manager(MovieRepository repository, MovieValidator validator) {
-		SimpleMovieManager manager=new SimpleMovieManager();
-		manager.setRepository(repository);
-		manager.setValidator(validator);
-		
-		return manager;
-	}
+//	@Bean MovieManager manager(MovieRepository repository, MovieValidator validator) {
+//		SimpleMovieManager manager=new SimpleMovieManager();
+//		manager.setRepository(repository);
+//		manager.setValidator(validator);
+//		
+//		return manager;
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MovieBootServiceApplication.class, args);
