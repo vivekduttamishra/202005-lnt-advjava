@@ -24,7 +24,7 @@ public class HibernateUtils {
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                settings.put(Environment.HBM2DDL_AUTO, "none");
+                settings.put(Environment.HBM2DDL_AUTO, "create"); //create new table. drop any table that exists
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Movie.class);
                 registry = new StandardServiceRegistryBuilder()

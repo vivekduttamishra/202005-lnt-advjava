@@ -12,7 +12,9 @@ import in.conceptarchitect.movies.MovieManager;
 import in.conceptarchitect.movies.MovieRepository;
 import in.conceptarchitect.movies.MovieValidator;
 import in.conceptarchitect.practices.ValidationMessage;
+import in.conceptarchitect.practices.aop.Ignore;
 import in.conceptarchitect.practices.aop.LogIt;
+import in.conceptarchitect.practices.aop.LogPerformance;
 
 
 @Component
@@ -45,6 +47,8 @@ public class SimpleMovieManager implements MovieManager {
 		this.repository = repository;
 	}
 
+	@LogPerformance
+	@Ignore
 	public ValidationMessage addMovie(Movie movie) {
 		// TODO Auto-generated method stub
 		if(movie==null)
@@ -58,6 +62,8 @@ public class SimpleMovieManager implements MovieManager {
 		return validation;
 	}
 
+	@LogIt
+	@LogPerformance
 	public Movie getMovieById(String imdbId) {
 		// TODO Auto-generated method stub
 		return repository.getById(imdbId);

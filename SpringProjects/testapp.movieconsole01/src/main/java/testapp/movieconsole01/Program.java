@@ -21,18 +21,43 @@ public class Program {
 		System.out.println("Program Starts. Calling getMovieManager...");
 
 		MovieManager manager = getMovieManager();
+		System.out.println("manager =>"+manager.getClass());
 
-		//addDummyMovies(manager);
-		//addMovie(manager);
-		getAllMovies(manager);
+		
+		
+		int choice=0;
+		do {
+			choice=Input.readInt("1. add movie 2. list movies 3. search by id 0. exit?");
+			
+			switch(choice) {
+			case 1: addMovie(manager); break;
+			case 2: getAllMovies(manager);break;
+			case 3: getMovieById(manager);break;
+			case 0: break;
+			default:System.out.println("invalid choice. retry"); break;
+			}
+			System.out.println("\n-—--\n\n");
+		}while(choice!=0);
+		
+				
+	}
 
+	private static void getMovieById(MovieManager manager) {
+		// TODO Auto-generated method stub
+		String str=Input.read("imdb id?");
+		if(str=="")
+			return ;
+		Movie movie=manager.getMovieById(str);
+		System.out.println(movie);
+		
+		
 	}
 
 	public static MovieManager getMovieManager() {
 
-		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:config/movieconfig.xml");
+		//ApplicationContext context = new ClassPathXmlApplicationContext("classpath:config/movieconfig.xml");
 		
-		//ApplicationContext context=new AnnotationConfigApplicationContext(MoviesConfig.class);
+		ApplicationContext context=new AnnotationConfigApplicationContext(MoviesConfig.class);
 		
 		return context.getBean(MovieManager.class);
 	}

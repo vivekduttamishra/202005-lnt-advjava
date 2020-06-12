@@ -15,7 +15,7 @@ public class Input {
 	}
 	
 	public static String readString(String prompt, String defaultValue) {
-		if(!defaultValue.isEmpty())
+		if(defaultValue!=null && !defaultValue.isEmpty())
 			prompt=prompt+"["+defaultValue+"]";
 		System.out.print(prompt+": ");
 		String s=defaultValue;

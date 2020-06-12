@@ -15,18 +15,52 @@ public class App {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SessionFactory factory=HibernateUtils.getSessionFactory();
+		Session session=factory.openSession();
 		
-		addDummyMovies(factory);
+		addDummyMovies(factory,session);
 		
-		//createMovie(factory);
+		int choice=0;
+		do {
+			choice=Input.readInt("1. Add A Movie 2. List  3. Search By Id  0. exit?");
+			switch(choice) {
+			case 1:createMovie(factory,session); break;
+			case 2: listMovies(factory,session); break;
+			case 3: searchMovie(factory,session); break;
+			case 0: break;
+			default: System.out.println("Invalid choice. Retry"); break;
+			}
+			
+			System.out.println("\n------\n\n");
+		}while(choice!=0);
 		
-		listMovies(factory);
+		if(session!=null)
+			session.close();
 		
 		HibernateUtils.shutdown();
 	}
 
 
-	private static void createMovie(SessionFactory factory) {
+	private static void searchMovie(SessionFactory factory, Session session) {
+		// TODO Auto-generated method stub
+		
+		String imdbId = Input.readString("imdb id?",null);
+		if(imdbId==null)
+			return;	
+		
+		//Session session= factory.openSession();
+		if(session==null) session=factory.openSession();
+		
+		Movie movie=session.find(Movie.class, imdbId);
+		
+		if(movie==null)
+			System.out.println("Sorry No Such Movie");
+		else
+			System.out.println("You got it : "+movie);
+		
+	}
+
+
+	private static void createMovie(SessionFactory factory, Session session) {
 		// TODO Auto-generated method stub
 		String dontAdd="EXIT WITHOUT ADDING A MOVIE";
 		String title=Input.readString("Title",dontAdd);
@@ -38,10 +72,12 @@ public class App {
 		
 		
 		Transaction tr=null;
-		Session session=null;
+		
 		try{
 			
-		session=factory.openSession();  //you need a session
+		//session=factory.openSession();  //you need a session
+		if(session==null) session=factory.openSession();
+			
 		tr=session.beginTransaction();
 		
 		session.save(movie); //auto generates insert query
@@ -55,18 +91,19 @@ public class App {
 				tr.rollback();
 			ex.printStackTrace();
 		} finally {
-			session.close();
+			//session.close();
 		}
 		
 		
 		
 	}
 	
-	private static void listMovies(SessionFactory factory) {
+	private static void listMovies(SessionFactory factory, Session session2) {
 		// TODO Auto-generated method stub
 		Session session=null;
 		try {
-			session=factory.openSession();
+			//session=factory.openSession();
+			if(session==null) session=factory.openSession();
 			
 			
 			List<Movie> movies=session.createQuery(     //create a sql query based on object model
@@ -79,42 +116,54 @@ public class App {
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
-			session.close();
+			//session.close();
 			
 		}
 		
 	}
 
 
-	private static void addDummyMovies(SessionFactory factory) {
+	private static void addDummyMovies(SessionFactory factory, Session session) {
 		
 		// TODO Auto-generated method stub
-		if(!Input.readString("Want to add dummy movies?").contentEquals("y"))
+		if(!Input.readString("Want to add dummy movies?","y").contentEquals("y"))
 			return;
 		
 		
-		Session session=null;
+		//Session session=null;
 		Transaction tx=null;
 		try {
-			
-			session=factory.openSession();
-			tx=session.beginTransaction();
+			if(session==null)
+				session=factory.openSession();
+			if(Input.readString("do you need a transaction?","y").contentEquals("y")) {
+				System.out.println("starting transaction");
+				tx=session.beginTransaction();
+			}
 		
 			session.save(createMovie("tt1230", "Harry Potter and the Order of Phonex", 6,
 					"The Fifth part of harry potter saga"));
 			session.save(createMovie("tt1231", "Harry Potter and the chamber of secrets", 8.2,
 					"The Second part of harry potter saga"));
+			
+			if(Input.readString("Do you think something will go wrong?","n").contentEquals("y"))
+				throw new RuntimeException("something went wrong");
+			
 			session.save(createMovie("tt1232", "X2", 7.5, "Part 2 of XMen series"));
 			session.save(createMovie("tt1233", "XMen", 7.2, "First Part of Xmen series"));
-
-			tx.commit();
+			
+			if(tx!=null) {
+				tx.commit();
+				System.out.println("transaction committed");
+			}
 		} catch(Exception ex) {
-			if(tx!=null)
+			if(tx!=null) {
 				tx.rollback();
+				System.out.println("transaction rolled back");
+			}
 			ex.printStackTrace();
 		}finally {
-			if(session!=null)
-				session.close();
+			//if(session!=null)
+			//	session.close();
 		}
 
 		
