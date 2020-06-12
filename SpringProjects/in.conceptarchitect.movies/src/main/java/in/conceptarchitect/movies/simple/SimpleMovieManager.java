@@ -48,7 +48,7 @@ public class SimpleMovieManager implements MovieManager {
 	}
 
 	@LogPerformance
-	@Ignore
+	//@Ignore
 	public ValidationMessage addMovie(Movie movie) {
 		// TODO Auto-generated method stub
 		if(movie==null)

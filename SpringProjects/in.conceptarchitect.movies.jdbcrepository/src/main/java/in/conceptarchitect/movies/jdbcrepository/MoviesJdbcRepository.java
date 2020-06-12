@@ -59,6 +59,7 @@ public class MoviesJdbcRepository implements MovieRepository {
 		movie.setImdbID(   rs.getString("imdb_id"));
 		movie.setTitle( rs.getString("title"));
 		movie.setImdbRating(rs.getDouble("imdb_rating"));
+		movie.setDescription(rs.getString("description"));
 		return movie;
 	}
 	

@@ -33,6 +33,7 @@ public class Movie {
 	@TableColumn("imdb_rating")
 	double imdbRating;
 	
+	@TableColumn("description")
 	String description;
 	
 	String tag;

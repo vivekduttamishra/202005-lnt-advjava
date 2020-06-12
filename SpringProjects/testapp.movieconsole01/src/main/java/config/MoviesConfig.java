@@ -29,7 +29,7 @@ public class MoviesConfig {
 		
 		@Bean
 		JdbcManager jdbcManager() {
-			return new JdbcManager("jdbc:mysql://localhost/lnt_movies", "root", "tr@1n1nG");
+			return new JdbcManager("jdbc:mysql://localhost/lnt_movies", "root", "root");
 		}
        
 		

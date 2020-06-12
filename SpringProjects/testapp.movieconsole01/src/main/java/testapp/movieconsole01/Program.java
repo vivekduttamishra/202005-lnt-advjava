@@ -25,18 +25,21 @@ public class Program {
 
 		
 		
+		
+		
 		int choice=0;
 		do {
-			choice=Input.readInt("1. add movie 2. list movies 3. search by id 0. exit?");
+			choice=Input.readInt("1. add movie 2. list movies 3. search by id  4. Add Dummy Movies 0. exit?");
 			
 			switch(choice) {
 			case 1: addMovie(manager); break;
 			case 2: getAllMovies(manager);break;
 			case 3: getMovieById(manager);break;
+			case 4: addDummyMovies(manager);break;
 			case 0: break;
 			default:System.out.println("invalid choice. retry"); break;
 			}
-			System.out.println("\n-—--\n\n");
+			System.out.println("\n---\n\n");
 		}while(choice!=0);
 		
 				

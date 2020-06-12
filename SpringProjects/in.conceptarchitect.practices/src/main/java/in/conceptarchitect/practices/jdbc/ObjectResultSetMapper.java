@@ -68,6 +68,7 @@ public class ObjectResultSetMapper<E> implements ResultSetMapper<E> {
 					value = rs.getString(columnName);
 				else if (parameterType.equals(Double.class))
 					value = rs.getDouble(columnName);
+				
 
 				method.invoke(object, value);
 			} catch (Exception ex) {

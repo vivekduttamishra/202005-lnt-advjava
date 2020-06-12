@@ -1,0 +1,23 @@
+@charset "ISO-8859-1";
+
+.grid{
+	columns:3;	
+}
+
+.grid li{
+	list-style:none;
+}
+
+.box{
+	border:1px solid black;
+	margin:5px;
+	padding:5px;
+	border-radius:10px;
+	box-sizing: border-box;
+	height: 120px;
+	max-height: 120px;
+}
+
+.gridx li{
+	list-style:none;
+}

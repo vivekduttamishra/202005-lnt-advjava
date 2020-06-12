@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
+    <wb-module deploy-name="movie-web">
+                
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="movies-core-1.0.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/movies-core/movies-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="practices-1.0.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/practices/practices">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="movie-json-repository-1.0.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/movie-json-repository/movie-json-repository">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+                
+        <property name="context-root" value="movie-web"/>
+                
+        <property name="java-output-path" value="/movie-web/target/classes"/>
+            
+    </wb-module>
+    
+</project-modules>
